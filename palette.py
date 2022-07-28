@@ -13,15 +13,18 @@ class Palette:
     def detect_ball(self, ball, game_info):
         if ball.y >= game_info.HEIGHT - self.height - ball.radius - 5:
 
+            # ball in first half of paddle
             if int(ball.x) in range(int(self.x), int(self.x) + self.width // 2 + 1):
 
-                if ball.direction_left():
+                if ball.heading_left():
                     ball.bounce_y()
                 else:
                     ball.bounce_y()
                     ball.bounce_x()
-            elif int(ball.x) in range(int(self.x) + self.width // 2, self.width + int(self.x) + self.width // 2):
-                if ball.direction_left():
+
+            # ball in second half of paddle
+            elif int(ball.x) in range(int(self.x) + self.width // 2, self.width + int(self.x)):
+                if ball.heading_left():
                     ball.bounce_y()
                     ball.bounce_x()
                 else:
